@@ -1,19 +1,35 @@
-name: Run Shell Script
+name: Build and Deploy Scripts
 
 on:
   pull_request:
     branches:
       - develop
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 jobs:
-  run-script:
+  build:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: 
+      - name: Run build script
         run: |
-          chmod +x ./pr-dev.sh
-          sh ./pr-dev.sh
+          chmod +x ./build.sh
+          sh ./build.sh
+
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'develop')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run deploy script
+        run: |
+          chmod +x ./deploy.sh
+          sh ./deploy.sh
