@@ -1,12 +1,9 @@
 name: Run Shell Script
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
-      - main
+      - develop
 
 jobs:
   run-script:
@@ -16,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run shell script
+      - name: 
         run: |
-          chmod +x ./main.sh
-          sh ./main.sh
+          chmod +x ./pr-dev.sh
+          sh ./pr-dev.sh
