@@ -16,6 +16,7 @@ jobs:
 
       - name: Run build
         run: |
+          chmod +x ./build.sh
           ./build.sh
 
   deploy:
@@ -27,4 +28,5 @@ jobs:
 
       - name: Run deploy
         run: |
+          chmod +x ./deploy.sh
           ./deploy.sh
