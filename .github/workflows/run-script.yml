@@ -1,10 +1,10 @@
 name: CI/CD Flow
 
 on:
-  pull_request:
-    branches:
-      - develop
-    types: [opened, synchronize, reopened]
+  # pull_request:
+  #   branches:
+  #     - develop
+  #   types: [opened, synchronize, reopened]
   workflow_dispatch:
     inputs:
       run_deploy:
@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-    if: github.event_name == 'pull_request'
+    if: ${{ github.event.inputs.run_deploy == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
