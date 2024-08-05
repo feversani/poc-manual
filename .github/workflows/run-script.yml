@@ -4,23 +4,30 @@ on:
   # pull_request:
   #   branches:
   #     - develop
+  #   types: [opened, synchronize, reopened]
   workflow_dispatch:
+    inputs:
+      run_deploy:
+        description: "Desplegar?"
+        required: true
+        default: false
+        type: boolean
 
 jobs:
-  # build:
-  #   if: github.event_name == 'pull_request'
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
+  build:
+    if: ${{ github.event.inputs.run_deploy == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-  #     - name: Run build
-  #       run: |
-  #         chmod +x ./build.sh
-  #         ./build.sh
+      - name: Run build
+        run: |
+          chmod +x ./build.sh
+          ./build.sh
 
   deploy:
-    if: github.event_name == 'workflow_dispatch'
+    if: ${{ github.event.inputs.run_deploy == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -30,3 +37,4 @@ jobs:
         run: |
           chmod +x ./deploy.sh
           ./deploy.sh
+
