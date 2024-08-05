@@ -13,7 +13,13 @@ on:
         type: boolean
 
 jobs:
-  build:
+    printInputs:
+      runs-on: ubuntu-latest
+      steps:
+      - run: |
+          echo "Deploy: ${{ github.event.inputs.run_deploy  }}"
+
+    build:
     if: ${{ github.event.inputs.run_deploy == 'true' }} && github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
