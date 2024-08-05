@@ -10,7 +10,6 @@ on:
       run_deploy:
         description: "Desplegar?"
         required: true
-        default: false
         type: boolean
 
 jobs:
