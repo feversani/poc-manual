@@ -1,0 +1,23 @@
+name: Test Flow PROD
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+jobs:
+  test-dev:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run test
+        run: |
+          chmod +x ./test.sh
+          ./test.sh
+
+

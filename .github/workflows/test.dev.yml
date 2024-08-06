@@ -1,19 +1,22 @@
-name: Run Shell Script
+name: Test Flow DEV
 
 on:
   pull_request:
     branches:
       - develop
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 jobs:
-  run-script:
+  test-dev:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: 
+      - name: Run test
         run: |
-          chmod +x ./pr-dev.sh
-          sh ./pr-dev.sh
+          chmod +x ./test.sh
+          ./test.sh
+
+
