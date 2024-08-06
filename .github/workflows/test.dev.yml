@@ -1,4 +1,4 @@
-name: Test Flow
+name: Test Flow DEV
 
 on:
   pull_request:
@@ -8,15 +8,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  test-dev:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run build
+      - name: Run test
         run: |
-          chmod +x ./build.sh
-          ./build.sh
+          chmod +x ./test.sh
+          ./test.sh
 
 
