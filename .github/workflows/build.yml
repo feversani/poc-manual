@@ -1,0 +1,21 @@
+name: Build Flow
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+jobs:
+  calidad:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run build
+        run: |
+          chmod +x ./calidad.sh
+          ./calidad.sh
