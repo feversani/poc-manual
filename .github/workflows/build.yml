@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  calidad:
+  build:
     runs-on: ubuntu-latest
     environment: dev
     steps:
@@ -17,5 +17,5 @@ jobs:
 
       - name: Run build
         run: |
-          chmod +x ./calidad.sh
-          ./calidad.sh
+          chmod +x ./build.sh
+          ./build.sh

@@ -6,7 +6,7 @@ on:
         - develop
 
 jobs:
-  calidad:
+  deploy:
     runs-on: ubuntu-latest
     environment: dev
     steps:
