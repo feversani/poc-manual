@@ -1,4 +1,4 @@
-name: Deploy Flow
+name: Deploy Flow PROD
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
         - main
 
 jobs:
-  deploy:
+  deploy-prod:
     runs-on: ubuntu-latest
     environment: prod
     steps:

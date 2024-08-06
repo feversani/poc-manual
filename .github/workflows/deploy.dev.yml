@@ -1,4 +1,4 @@
-name: Deploy Flow
+name: Deploy Flow DEV
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
         - develop
 
 jobs:
-  deploy:
+  deploy-dev:
     runs-on: ubuntu-latest
     environment: dev
     steps:
