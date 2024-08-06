@@ -1,0 +1,19 @@
+name: Deploy Flow
+
+on:
+  push:
+    branches:
+        - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run build
+        run: |
+          chmod +x ./deploy.sh
+          ./deploy.sh
